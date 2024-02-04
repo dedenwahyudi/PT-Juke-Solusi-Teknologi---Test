@@ -97,18 +97,14 @@ class EmployeeController extends Controller
 
     public function search(Request $request)
     {
+        $filters = ['first_name', 'ktp_number', 'employee_position'];
+
         $query = M_employee::query();
 
-        if ($request->has('first_name')) {
-            $query->where('first_name', 'like', '%' . $request->input('first_name') . '%');
-        }
-
-        if ($request->has('ktp_number')) {
-            $query->where('ktp_number', $request->input('ktp_number'));
-        }
-
-        if ($request->has('employee_position')) {
-            $query->where('employee_position', $request->input('employee_position'));
+        foreach ($filters as $filter) {
+            if ($request->filled($filter)) {
+                $query->orWhere($filter, 'like', '%' . $request->input($filter) . '%');
+            }
         }
 
         $results = $query->get();

@@ -58,6 +58,7 @@
                                     <th>Street Address</th>
                                     <th>Zip Code</th>
                                     <th>KTP Number</th>
+                                    <th>KTP Image</th>
                                     <th>Current Position</th>
                                     <th>Bank Account Number</th>
                                     <th>Employee Position</th>
@@ -78,6 +79,13 @@
                                         <td>{{ $search->street_address }}</td>
                                         <td>{{ $search->zip_code }}</td>
                                         <td>{{ $search->ktp_number }}</td>
+                                        <td>
+                                            @if($search->ktp_image)
+                                                <img src="{{ asset('ktp_images/' . $search->ktp_image) }}" alt="KTP Image" style="max-width: 200px; height: auto;">
+                                            @else
+                                                <p>No KTP Image available</p>
+                                            @endif
+                                        </td>
                                         <td>{{ $search->current_position_bank_account }}</td>
                                         <td>{{ $search->bank_account_number }}</td>
                                         <td>{{ $search->employee_position }}</td>

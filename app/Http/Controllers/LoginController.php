@@ -42,13 +42,13 @@ class LoginController extends Controller
             'remember_token' => Str::random(60)
         ]);
 
-        return redirect('/login')->with('toast_success', 'Your account has been created. Please Login!');
+        return redirect('/')->with('toast_success', 'Your account has been created. Please Login!');
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect('/login');
+        return redirect('/');
     }
 
     public function dashboard()
